@@ -1,22 +1,22 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { LojistaDto } from '../dto/lojista.dto';
+import { LojistaDto } from '../dto/lojistaDTO';
 import { LojistaService } from './lojista.service';
 
-@Controller()
+@Controller('/lojistas')
 export class LojistaController {
   constructor(private readonly service: LojistaService) {}
 
-  @Get('/lojistas')
+  @Get()
   getAllLojistas(): Promise<LojistaDto[]> {
     return this.service.findAll();
   }
 
-  @Get('/lojistas/:id')
+  @Get(':id')
   getById(@Param('id') id: string): Promise<LojistaDto> {
     return this.service.getById(Number(id));
   }
 
-  @Post('/lojistas/create')
+  @Post('/create')
   save(@Body() lojista: LojistaDto): Promise<LojistaDto> {
     return this.service.create(lojista);
   }
