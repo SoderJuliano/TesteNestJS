@@ -2,7 +2,7 @@ import { Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Lojista, LojistaDocument } from './schemas/lojista.schema';
-import { LojistaDto } from '../dto/lojista.dto';
+import { LojistaDto } from '../dto/lojistaDTO';
 
 @Injectable()
 export class LojistaService {
@@ -11,10 +11,11 @@ export class LojistaService {
   ) {}
 
   async create(lojistaDto: LojistaDto): Promise<Lojista> {
-    const Lojista = new this.LojistaModel(lojistaDto);
+    const lojista = new this.LojistaModel(lojistaDto);
+    lojista.dataCriacao = new Date(Date.now());
     console.log('salvando lojista');
     console.log(lojistaDto);
-    return await Lojista.save();
+    return await lojista.save();
   }
 
   async findAll(): Promise<Lojista[]> {
