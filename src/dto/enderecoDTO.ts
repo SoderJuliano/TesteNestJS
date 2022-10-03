@@ -1,4 +1,4 @@
-export class EnderecoDTO {
+export class EnderecoDto {
   tipo: string;
 
   cep: string;

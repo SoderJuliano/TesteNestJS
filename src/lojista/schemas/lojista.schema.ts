@@ -1,7 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { AprovacaoDTO } from 'src/dto/aprovacaoDTO';
-import { EnderecoDTO } from 'src/dto/enderecoDTO';
+import { AprovacaoDto } from 'src/dto/aprovacaoDTO';
+import { EnderecoDto } from 'src/dto/enderecoDTO';
+import { FreteDto } from 'src/dto/freteDTO';
 
 export type LojistaDocument = Lojista & Document;
 
@@ -11,7 +12,7 @@ export class Lojista {
   email: string;
 
   @Prop()
-  aprovacao: AprovacaoDTO;
+  aprovacao: AprovacaoDto;
 
   @Prop()
   dataCriacao: Date;
@@ -32,10 +33,16 @@ export class Lojista {
   telefoneComercial: string;
 
   @Prop()
-  enderecos: Array<EnderecoDTO>;
+  enderecos: Array<EnderecoDto>;
 
   @Prop()
   urlSite: string;
+
+  @Prop()
+  nomeExebicao: string;
+
+  @Prop()
+  frete: FreteDto;
 }
 
 export const LojistaSchema = SchemaFactory.createForClass(Lojista);
