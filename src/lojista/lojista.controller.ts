@@ -3,7 +3,9 @@ import { LojistaDto } from '../dto/lojistaDTO';
 import { MinhaLojaDto } from 'src/dto/minhaLojaDTO';
 import { LojistaService } from './lojista.service';
 import { RespostaPadrao } from 'src/Utils/respostaPadrao';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
+@ApiBearerAuth()
 @Controller('/lojistas')
 export class LojistaController {
   constructor(private readonly service: LojistaService) {}
@@ -14,8 +16,8 @@ export class LojistaController {
   }
 
   @Get(':id')
-  getById(@Param('id') id: string): Promise<LojistaDto> {
-    return this.service.getById(Number(id));
+  getById(@Param('id') id: string): Promise<RespostaPadrao> {
+    return this.service.getById(id);
   }
 
   @Post('/create')

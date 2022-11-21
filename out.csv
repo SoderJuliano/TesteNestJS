@@ -1,0 +1,8 @@
+put,/banners/gestao/editar/{idBanner},Edita um banner,"{'descricao': 'string', 'imagens': ['nome', 'resolucao', 'arquivo'], 'linkRedirecionamento': 'string', 'periodoVigencia': 'date-time', 'idBannerASerSubstituido': 'string'}"
+post,/banners/,Cadastra um novo banner,"{'tipoBanner': 'string', 'nome': 'string', 'descricao': 'string', 'imagens': ['nome', 'resolucao', 'arquivo'], 'linkRedirecionamento': 'string', 'periodoVigencia': 'date-time', 'idBannerASerSubstituido': 'string'}"
+patch,/banners/gestao/reordenar,Atualiza a posição dos banners no carrossel,"['id', 'posicaoNoCarousel']"
+patch,/banners/gestao/inativar/{idBanner},Permite a inativação de um banner,-
+patch,/banners/gestao/ativar/{idBanner},Permite a ativação de um banner,-
+get,/banners/{plataformaExibicao},Retorna banners ativos por plataforma de exibição,-
+get,/banners/gestao/{statusBanner},Retorna banners a partir do status informado,-
+delete,/banners/gestao/excluir/{idBanner},Permite a exclusão de um banner,-

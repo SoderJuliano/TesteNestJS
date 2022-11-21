@@ -28,12 +28,24 @@ export class LojistaService {
     return await this.LojistaModel.find().exec();
   }
 
-  async getById(id: number): Promise<LojistaDto> {
-    return await this.LojistaModel.findById(id).exec();
+  async getById(id: string): Promise<RespostaPadrao> {
+    this.response = new RespostaPadrao();
+    let lojistaDocument: LojistaDocument;
+    console.log("o id é "+id);
+    // eslint-disable-next-line prefer-const
+    lojistaDocument = await this.LojistaModel.findById(id).exec();
+    if (!lojistaDocument) {
+      throw new NotFoundException("Lojista não encontrado");
+    }
+    
+    this.response.setMensagem("lojista encontrado com sucesso");
+    this.response.setConteudo(lojistaDocument);
+    return this.response.respostaPadrao(true, 200);
   }
   async updateMinhaLoja(lojistaId: string, request: MinhaLojaDto): Promise<RespostaPadrao> {
     console.log(request.nomeExibicao);
-    console.log(`lojista: ${lojistaId}`);let lojistaDocument: LojistaDocument;
+    console.log(`lojista: ${lojistaId}`);
+    let lojistaDocument: LojistaDocument;
     // eslint-disable-next-line prefer-const
     lojistaDocument = await this.LojistaModel.findById(lojistaId).exec();
     if (!lojistaDocument) {
