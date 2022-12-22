@@ -1,6 +1,6 @@
 import { IsNumber, Max, Min } from 'class-validator';
 
-export class FreteDto {
+export class FreteDTO {
   descricao: string;
   endpoint: string;
   @IsNumber()

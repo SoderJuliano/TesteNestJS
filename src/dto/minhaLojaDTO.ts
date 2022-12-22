@@ -7,7 +7,7 @@ import {
   Min,
 } from 'class-validator';
 
-export class MinhaLojaDto {
+export class MinhaLojaDTO {
   @IsString()
   @IsNotEmpty()
   nomeExibicao: string;

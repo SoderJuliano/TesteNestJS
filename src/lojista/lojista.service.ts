@@ -3,10 +3,10 @@ import { Model } from 'mongoose';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Lojista, LojistaDocument } from './schemas/lojista.schema';
-import { LojistaDto } from '../dto/lojistaDTO';
-import { MinhaLojaDto } from '../dto/minhaLojaDTO';
+import { LojistaDTO } from '../dto/LojistaDTO';
+import { MinhaLojaDTO } from '../dto/MinhaLojaDTO';
 import { RespostaPadrao } from 'src/Utils/respostaPadrao';
-import { FreteDto } from 'src/dto/freteDTO';
+import { FreteDTO } from 'src/dto/FreteDTO';
 
 @Injectable()
 export class LojistaService {
@@ -16,11 +16,11 @@ export class LojistaService {
   }
   response = new RespostaPadrao()
 
-  async create(lojistaDto: LojistaDto): Promise<Lojista> {
-    const lojista = new this.LojistaModel(lojistaDto);
+  async create(LojistaDTO: LojistaDTO): Promise<Lojista> {
+    const lojista = new this.LojistaModel(LojistaDTO);
     lojista.dataCriacao = new Date(Date.now());
     console.log('salvando lojista');
-    console.log(lojistaDto);
+    console.log(LojistaDTO);
     return await lojista.save();
   }
 
@@ -42,7 +42,7 @@ export class LojistaService {
     this.response.setConteudo(lojistaDocument);
     return this.response.respostaPadrao(true, 200);
   }
-  async updateMinhaLoja(lojistaId: string, request: MinhaLojaDto): Promise<RespostaPadrao> {
+  async updateMinhaLoja(lojistaId: string, request: MinhaLojaDTO): Promise<RespostaPadrao> {
     console.log(request.nomeExibicao);
     console.log(`lojista: ${lojistaId}`);
     let lojistaDocument: LojistaDocument;
@@ -52,7 +52,7 @@ export class LojistaService {
       throw new NotFoundException("Lojista não encontrado");
     }
     lojistaDocument.nomeExebicao = request.nomeExibicao;
-    const frete = new FreteDto();
+    const frete = new FreteDTO();
     frete.setTempoPreparo(request.tempoCD);
     lojistaDocument.frete = frete;
     lojistaDocument.save();

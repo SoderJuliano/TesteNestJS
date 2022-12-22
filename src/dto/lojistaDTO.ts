@@ -1,10 +1,10 @@
 import { IsDate, IsNotEmpty, IsString } from 'class-validator';
-import { AprovacaoDto } from './aprovacaoDTO';
-import { EnderecoDto } from './enderecoDTO';
-import { FreteDto } from './freteDTO';
+import { AprovacaoDTO } from './AprovacaoDTO';
+import { EnderecoDTO } from './EnderecoDTO';
+import { FreteDTO } from './FreteDTO';
 
-export class LojistaDto {
-  aprovacao: AprovacaoDto;
+export class LojistaDTO {
+  aprovacao: AprovacaoDTO;
 
   @IsDate()
   dataCriacao: Date;
@@ -27,7 +27,7 @@ export class LojistaDto {
   @IsNotEmpty()
   telefoneComercial: string;
 
-  enderecos: Array<EnderecoDto>;
+  enderecos: Array<EnderecoDTO>;
 
   @IsString()
   @IsNotEmpty()
@@ -36,7 +36,7 @@ export class LojistaDto {
   @IsString()
   urlSite: string;
 
-  frete: FreteDto;
+  frete: FreteDTO;
 }
 
 function getNomeFantasia(): string {

@@ -1,4 +1,4 @@
-export class AprovacaoDto {
+export class AprovacaoDTO {
   status: string;
   data: Date;
 }
