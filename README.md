@@ -24,6 +24,16 @@
 
 ## Description
 
+## Before of everything
+
+1 we need sure we have nest.js installed
+  * Running command ```nest -v``` will print the nest installed version
+    * if not, than you'll need to install it, with ```npm i -g @nestjs/cli
+
+Note: You can create your own project with ```nest new project-name-you-want```
+
+
+
 [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
 ## Installation
