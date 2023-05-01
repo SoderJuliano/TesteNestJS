@@ -1,12 +1,20 @@
-import { IsNumber, Max, Min } from 'class-validator';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
+import { IsNumber, IsOptional, Max, Min } from 'class-validator';
 
 export class FreteDTO {
-  descricao: string;
+  @ApiPropertyOptional()
+  descricao?: string;
+  
+  @ApiProperty()
   endpoint: string;
+  
+  @ApiProperty()
   @IsNumber()
-  @Max(5)
-  @Min(1)
+  @Max(2)
+  @Min(0)
   tempoPreparo: number;
+  
+  @ApiProperty()
   cep: string;
 
   setTempoPreparo(valor: number): void {
