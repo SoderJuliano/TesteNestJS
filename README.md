@@ -55,6 +55,14 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## Swaggger
+http://localhost:3000/api
+  
+  * Para colocar endpoints dentro de um determinada tag usa-se o comando `@ApiTags('<Nome_da_Tag>')`
+
+## Docker MongoExpress running over
+http://0.0.0.0:8081/
+
 ## Test
 
 ```bash

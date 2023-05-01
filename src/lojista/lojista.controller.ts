@@ -1,10 +1,11 @@
 import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
-import { LojistaDTO } from '../dto/LojistaDTO';
-import { MinhaLojaDTO } from 'src/dto/MinhaLojaDTO';
+import { LojistaDTO } from '../dto/lojistaDto';
+import { MinhaLojaDTO } from 'src/dto/minhaLojaDto';
 import { LojistaService } from './lojista.service';
 import { RespostaPadrao } from 'src/Utils/respostaPadrao';
-import { ApiBearerAuth } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Lojista')
 @ApiBearerAuth()
 @Controller('/lojistas')
 export class LojistaController {

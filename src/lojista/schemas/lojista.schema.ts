@@ -1,8 +1,8 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { AprovacaoDTO } from 'src/dto/AprovacaoDTO';
-import { EnderecoDTO } from 'src/dto/EnderecoDTO';
-import { FreteDTO } from 'src/dto/FreteDTO';
+import { AprovacaoDTO } from 'src/dto/aprovacaoDto';
+import { EnderecoDTO } from 'src/dto/enderecoDto';
+import { FreteDTO } from 'src/dto/freteDto';
 
 export type LojistaDocument = Lojista & Document;
 
