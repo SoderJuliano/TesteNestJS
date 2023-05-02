@@ -8,7 +8,7 @@ async function bootstrap() {
     .setTitle('NestJS Test')
     .setDescription('')
     .setVersion('1.0')
-    .addTag('NestJS')
+    .addTag('Lojista')
     .addBearerAuth()
     .addBasicAuth()
     .build();

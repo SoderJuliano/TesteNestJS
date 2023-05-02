@@ -3,10 +3,10 @@ import { Model } from 'mongoose';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Lojista, LojistaDocument } from './schemas/lojista.schema';
-import { LojistaDTO } from '../dto/LojistaDTO';
-import { MinhaLojaDTO } from '../dto/MinhaLojaDTO';
+import { LojistaDTO } from '../dto/lojistaDto';
+import { MinhaLojaDTO } from '../dto/minhaLojaDto';
 import { RespostaPadrao } from 'src/Utils/respostaPadrao';
-import { FreteDTO } from 'src/dto/FreteDTO';
+import { FreteDTO } from '../dto/freteDto';
 
 @Injectable()
 export class LojistaService {

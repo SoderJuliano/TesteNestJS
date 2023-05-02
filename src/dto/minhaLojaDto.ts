@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   IsInt,
   IsNotEmpty,
@@ -8,10 +9,12 @@ import {
 } from 'class-validator';
 
 export class MinhaLojaDTO {
+  @ApiProperty()
   @IsString()
   @IsNotEmpty()
   nomeExibicao: string;
 
+  @ApiProperty()
   @IsNumberString()
   @IsInt()
   @Min(1)
