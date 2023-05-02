@@ -3,7 +3,11 @@ import { LojistaDTO } from '../dto/lojistaDto';
 import { MinhaLojaDTO } from 'src/dto/minhaLojaDto';
 import { LojistaService } from './lojista.service';
 import { RespostaPadrao } from 'src/Utils/respostaPadrao';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiNotAcceptableResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 
 @ApiTags('Lojista')
 @ApiBearerAuth()

@@ -1,12 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsInt,
-  IsNotEmpty,
-  IsNumberString,
-  IsString,
-  Max,
-  Min,
-} from 'class-validator';
+import { IsInt, IsNotEmpty, IsString, Max, Min } from 'class-validator';
 
 export class MinhaLojaDTO {
   @ApiProperty()
@@ -15,9 +8,10 @@ export class MinhaLojaDTO {
   nomeExibicao: string;
 
   @ApiProperty()
-  @IsNumberString()
+  @IsNotEmpty()
+  //@IsNumber()
   @IsInt()
-  @Min(1)
-  @Max(5)
+  @Min(0, { message: 'O valor mínimo para tempo de preparo é 0' })
+  @Max(2)
   tempoCD: number;
 }

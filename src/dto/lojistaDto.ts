@@ -18,7 +18,7 @@ export class LojistaDTO {
 
   @ApiProperty({
     description: 'Nome de exebição da loja',
-    example: 'Borracharia do Jorge troca de óleo gratis'
+    example: 'Borracharia do Jorge troca de óleo gratis',
   })
   @IsString()
   nomeFantasia: string;
@@ -30,7 +30,7 @@ export class LojistaDTO {
 
   @ApiProperty({
     description: 'CNPJ',
-    example: '01538988011'
+    example: '01538988011',
   })
   @IsString()
   @IsNotEmpty()
@@ -38,7 +38,7 @@ export class LojistaDTO {
 
   @ApiProperty({
     description: 'Telefone de exebição',
-    example: '(49)999992606'
+    example: '(49)999992606',
   })
   @IsString()
   @IsNotEmpty()
@@ -49,7 +49,7 @@ export class LojistaDTO {
 
   @ApiProperty({
     description: 'Email comercial',
-    example: 'dycjh@example.com'
+    example: 'dycjh@example.com',
   })
   @IsString()
   @IsNotEmpty()

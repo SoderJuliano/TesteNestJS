@@ -33,11 +33,15 @@ export class LojistaService {
     let lojistaDocument: LojistaDocument;
     console.log("o id é "+id);
     // eslint-disable-next-line prefer-const
-    lojistaDocument = await this.LojistaModel.findById(id).exec();
-    if (!lojistaDocument) {
+    try {
+      lojistaDocument = await this.LojistaModel.findById(id).exec();
+    } catch (error) {
+      console.log(`Error ao realizar consulta no banco: ${error}`)
       throw new NotFoundException("Lojista não encontrado");
     }
-    
+    if (!lojistaDocument) {
+      throw new NotFoundException("Lojista não encontrado para o id "+id);
+    }
     this.response.setMensagem("lojista encontrado com sucesso");
     this.response.setConteudo(lojistaDocument);
     return this.response.respostaPadrao(true, 200);
@@ -47,9 +51,14 @@ export class LojistaService {
     console.log(`lojista: ${lojistaId}`);
     let lojistaDocument: LojistaDocument;
     // eslint-disable-next-line prefer-const
-    lojistaDocument = await this.LojistaModel.findById(lojistaId).exec();
-    if (!lojistaDocument) {
+    try {
+      lojistaDocument = await this.LojistaModel.findById(lojistaId).exec();  
+    } catch (error) {
+      console.log(`Error ao realizar consulta no banco: ${error}`)
       throw new NotFoundException("Lojista não encontrado");
+    }
+    if (!lojistaDocument) {
+      throw new NotFoundException("Lojista não encontrado para o id "+lojistaId);
     }
     lojistaDocument.nomeExebicao = request.nomeExibicao;
     const frete = new FreteDTO();

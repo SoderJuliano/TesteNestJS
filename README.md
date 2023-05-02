@@ -76,6 +76,10 @@ $ npm run test:e2e
 $ npm run test:cov
 ```
 
+## Development tips
+
+To validate our classes and auto return exception we need install ```npm i class-validator class-transformer``` and import it into main.ts as ```app.useGrobal.
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
