@@ -14,7 +14,7 @@ export class Validator {
       throw new BadRequestException('Id inválido');
     }
     console.log(
-      `[${Log.INFO}][${dataTime}]: Id validado com sucesso. id: ${id}`,
+      `[${Log.INFO}][${dataTime}]: ObjectId é um id válidado. id: ${id}`,
     );
   }
 

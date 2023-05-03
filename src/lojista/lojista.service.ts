@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import { Model } from 'mongoose';
-import { BadRequestException, Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Lojista, LojistaDocument } from './schemas/lojista.schema';
 import { LojistaDTO } from '../dto/lojistaDto';
@@ -11,7 +11,7 @@ import { Validator } from '../Utils/validator'
 
 @Injectable()
 export class LojistaService {
-  private validator: Validator = new Validator()
+  private validator: Validator = new Validator();
   constructor(
     @InjectModel('lojista') private LojistaModel: Model<LojistaDocument>
   ) {}
