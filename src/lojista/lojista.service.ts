@@ -21,8 +21,7 @@ export class LojistaService {
   async create(LojistaDTO: LojistaDTO): Promise<Lojista> {
     const lojista = new this.LojistaModel(LojistaDTO);
     lojista.dataCriacao = new Date(Date.now());
-    console.log('salvando lojista');
-    console.log(LojistaDTO);
+    this.validator.print('salvando lojista: '+JSON.stringify(LojistaDTO));
     return await lojista.save();
   }
 
@@ -47,13 +46,9 @@ export class LojistaService {
     return this.response.respostaPadrao(true, 200);
   }
   async updateMinhaLoja(lojistaId: string, request: MinhaLojaDTO): Promise<RespostaPadrao> {
-    
-    if(!this.mongoose.Types.ObjectId.isValid(lojistaId)){
-      throw new BadRequestException("Id inválido");
-    }
+    this.validator.idIsValid(lojistaId);
+    this.validator.print(`lojista: ${lojistaId}`);
 
-    console.log(request.nomeExibicao);
-    console.log(`lojista: ${lojistaId}`);
     let lojistaDocument: LojistaDocument;
     // eslint-disable-next-line prefer-const
     lojistaDocument = await this.LojistaModel.findById(lojistaId).exec();
