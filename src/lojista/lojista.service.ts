@@ -62,6 +62,7 @@ export class LojistaService {
     const frete = new FreteDTO();
     frete.setTempoPreparo(request.tempoCD);
     lojistaDocument.frete = frete;
+    lojistaDocument.dataModificacaoDocumento = new Date(Date.now());
     lojistaDocument.save();
 
     this.response.setMensagem("lojista atualizado com sucesso");

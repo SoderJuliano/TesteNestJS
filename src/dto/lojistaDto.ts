@@ -8,12 +8,8 @@ export class LojistaDTO {
   @ApiProperty()
   aprovacao: AprovacaoDTO;
 
-  @ApiProperty()
-  @IsDate()
   dataCriacao: Date;
 
-  @ApiProperty()
-  @IsDate()
   dataModificacaoDocumento: Date;
 
   @ApiProperty({
