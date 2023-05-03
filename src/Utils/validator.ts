@@ -9,7 +9,7 @@ export class Validator {
     const dataTime = this.moment().format('yyyy-MM-DD:hh:mm:ss');
     if (!this.mongoose.Types.ObjectId.isValid(id)) {
       console.log(
-        `[ERROR][${dataTime}]: O id ${id} não é um mongo objectId() válido`,
+        `[${Log.WARN}][${dataTime}]: O id ${id} não é um mongo objectId válido`,
       );
       throw new BadRequestException('Id inválido');
     }

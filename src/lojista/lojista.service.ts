@@ -7,7 +7,8 @@ import { LojistaDTO } from '../dto/lojistaDto';
 import { MinhaLojaDTO } from '../dto/minhaLojaDto';
 import { RespostaPadrao } from 'src/Utils/respostaPadrao';
 import { FreteDTO } from '../dto/freteDto';
-import { Validator } from '../Utils/validator'
+import { Validator } from '../Utils/validator';
+import { Log } from '../Utils/print-enuns';
 
 @Injectable()
 export class LojistaService {
@@ -39,6 +40,7 @@ export class LojistaService {
     // eslint-disable-next-line prefer-const
     lojistaDocument = await this.LojistaModel.findById(id).exec();
     if (!lojistaDocument) {
+      this.validator.printType("Lojista não encontrado para o id "+id, Log.ERROR);
       throw new NotFoundException("Lojista não encontrado para o id "+id);
     }
     this.response.setMensagem("lojista encontrado com sucesso");
@@ -53,6 +55,7 @@ export class LojistaService {
     // eslint-disable-next-line prefer-const
     lojistaDocument = await this.LojistaModel.findById(lojistaId).exec();
     if (!lojistaDocument) {
+      this.validator.printType("Lojista não encontrado para o id "+lojistaId, Log.ERROR);
       throw new NotFoundException("Lojista não encontrado para o id "+lojistaId);
     }
     lojistaDocument.nomeExebicao = request.nomeExibicao;
