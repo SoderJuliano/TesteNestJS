@@ -1,20 +1,22 @@
 /* eslint-disable prettier/prettier */
 import { Model } from 'mongoose';
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Lojista, LojistaDocument } from './schemas/lojista.schema';
 import { LojistaDTO } from '../dto/lojistaDto';
 import { MinhaLojaDTO } from '../dto/minhaLojaDto';
 import { RespostaPadrao } from 'src/Utils/respostaPadrao';
 import { FreteDTO } from '../dto/freteDto';
+import { Validator } from '../Utils/validator'
 
 @Injectable()
 export class LojistaService {
+  private validator: Validator = new Validator()
   constructor(
     @InjectModel('lojista') private LojistaModel: Model<LojistaDocument>
-  ) {
-  }
+  ) {}
   response = new RespostaPadrao()
+  mongoose = require('mongoose');
 
   async create(LojistaDTO: LojistaDTO): Promise<Lojista> {
     const lojista = new this.LojistaModel(LojistaDTO);
@@ -30,15 +32,13 @@ export class LojistaService {
 
   async getById(id: string): Promise<RespostaPadrao> {
     this.response = new RespostaPadrao();
+   
+    this.validator.idIsValid(id);
+
     let lojistaDocument: LojistaDocument;
-    console.log("o id é "+id);
+    
     // eslint-disable-next-line prefer-const
-    try {
-      lojistaDocument = await this.LojistaModel.findById(id).exec();
-    } catch (error) {
-      console.log(`Error ao realizar consulta no banco: ${error}`)
-      throw new NotFoundException("Lojista não encontrado");
-    }
+    lojistaDocument = await this.LojistaModel.findById(id).exec();
     if (!lojistaDocument) {
       throw new NotFoundException("Lojista não encontrado para o id "+id);
     }
@@ -47,16 +47,16 @@ export class LojistaService {
     return this.response.respostaPadrao(true, 200);
   }
   async updateMinhaLoja(lojistaId: string, request: MinhaLojaDTO): Promise<RespostaPadrao> {
+    
+    if(!this.mongoose.Types.ObjectId.isValid(lojistaId)){
+      throw new BadRequestException("Id inválido");
+    }
+
     console.log(request.nomeExibicao);
     console.log(`lojista: ${lojistaId}`);
     let lojistaDocument: LojistaDocument;
     // eslint-disable-next-line prefer-const
-    try {
-      lojistaDocument = await this.LojistaModel.findById(lojistaId).exec();  
-    } catch (error) {
-      console.log(`Error ao realizar consulta no banco: ${error}`)
-      throw new NotFoundException("Lojista não encontrado");
-    }
+    lojistaDocument = await this.LojistaModel.findById(lojistaId).exec();
     if (!lojistaDocument) {
       throw new NotFoundException("Lojista não encontrado para o id "+lojistaId);
     }
