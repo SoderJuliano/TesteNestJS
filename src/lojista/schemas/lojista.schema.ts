@@ -3,10 +3,10 @@ import { Document } from 'mongoose';
 import { AprovacaoDTO } from 'src/dto/aprovacaoDto';
 import { EnderecoDTO } from 'src/dto/enderecoDto';
 import { FreteDTO } from 'src/dto/freteDto';
-import { HydratedDocument } from 'mongoose';
+//import { HydratedDocument } from 'mongoose';
 
-//export type LojistaDocument = Lojista & Document;
-export type LojistaDocument = HydratedDocument<Lojista>;
+export type LojistaDocument = Lojista & Document;
+//export type LojistaDocument = HydratedDocument<Lojista>;
 
 @Schema()
 export class Lojista {

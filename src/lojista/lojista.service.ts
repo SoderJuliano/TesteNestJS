@@ -23,6 +23,10 @@ export class LojistaService {
     const lojista = new this.LojistaModel(LojistaDTO);
     lojista.dataCriacao = new Date(Date.now());
     this.validator.print('salvando lojista: '+JSON.stringify(LojistaDTO));
+    /*lojista.save(function (err, doc) {
+     console.log(`Lojista salvo com o objectId ${doc.id}`);
+    });
+   return lojista;*/
     return await lojista.save();
   }
 
@@ -64,9 +68,29 @@ export class LojistaService {
     lojistaDocument.frete = frete;
     lojistaDocument.dataModificacaoDocumento = new Date(Date.now());
     lojistaDocument.save();
-
-    this.response.setMensagem("lojista atualizado com sucesso");
-    this.response.setConteudo(lojistaDocument);
+    this.response = new RespostaPadrao();
+    this.response.setConteudo({"idLojista":lojistaId,"message": "Processado com sucesso."});
+    /*this.response.setMensagem("Processado com sucesso.");
+    this.response.setConteudo(lojistaDocument);*/
     return this.response.respostaPadrao(true, 200);
+  }
+
+  async delete(id: string): Promise<RespostaPadrao>{
+    this.response = new RespostaPadrao();
+    const lojista = await this.LojistaModel
+      .findByIdAndRemove({ _id: id })
+      .exec();
+      this.response.setMensagem("Lojista Deletado");
+      this.response.setConteudo(lojista);
+    return this.response;
+  }
+
+  async getAllEmail(): Promise<RespostaPadrao>{
+    this.response = new RespostaPadrao();
+    const emails = await this.LojistaModel.find().select('email numeroDocumento').exec();
+    this.validator.print('Busca por emails e numeroDocumentos executada');
+    this.response.respostaPadrao(true, 200);
+    this.response.setConteudo(emails);
+    return this.response;
   }
 }
