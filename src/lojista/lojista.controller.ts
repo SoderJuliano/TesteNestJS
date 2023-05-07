@@ -52,4 +52,9 @@ export class LojistaController {
   getAllEmails(): Promise<RespostaPadrao> {
     return this.service.getAllEmail();
   }
+
+  @Get('/email/:email')
+  getByEmail(@Param('email') email: string): Promise<RespostaPadrao> {
+    return this.service.getByEmail(email);
+  }
 }

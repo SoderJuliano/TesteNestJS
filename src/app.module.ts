@@ -9,7 +9,7 @@ import { LojistaModule } from './lojista/lojista.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/nest', {
+    MongooseModule.forRoot('mongodb://soder:soder1989@172.18.0.3:27017', {
       dbName: 'nest',
     }),
     LojistaModule,

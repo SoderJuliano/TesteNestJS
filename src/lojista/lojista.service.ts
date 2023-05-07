@@ -19,6 +19,18 @@ export class LojistaService {
   response = new RespostaPadrao()
   mongoose = require('mongoose');
 
+  async getByEmail(email: string): Promise<RespostaPadrao> {
+    const lojista = await this.LojistaModel.findOne({email}).exec();
+    if (!lojista) {
+      this.validator.print(`Lojista não encontrado com o email ${email}`);
+      throw new NotFoundException(`Lojista não encontrado com o email ${email}`);
+    }
+    this.validator.print(`Lojista encontrado, email: ${email}`);
+    this.response = new RespostaPadrao();
+    this.response.setConteudo(lojista);
+    return this.response;
+  }
+
   async create(LojistaDTO: LojistaDTO): Promise<Lojista> {
     const lojista = new this.LojistaModel(LojistaDTO);
     lojista.dataCriacao = new Date(Date.now());
